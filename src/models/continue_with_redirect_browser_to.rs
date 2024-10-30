@@ -14,9 +14,6 @@ use serde::{Deserialize, Serialize};
 /// ContinueWithRedirectBrowserTo : Indicates, that the UI flow could be continued by showing a recovery ui
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ContinueWithRedirectBrowserTo {
-    /// Action will always be `redirect_browser_to` redirect_browser_to ContinueWithActionRedirectBrowserToString
-    #[serde(rename = "action")]
-    pub action: ActionEnum,
     /// The URL to redirect the browser to
     #[serde(rename = "redirect_browser_to")]
     pub redirect_browser_to: String,
@@ -24,9 +21,8 @@ pub struct ContinueWithRedirectBrowserTo {
 
 impl ContinueWithRedirectBrowserTo {
     /// Indicates, that the UI flow could be continued by showing a recovery ui
-    pub fn new(action: ActionEnum, redirect_browser_to: String) -> ContinueWithRedirectBrowserTo {
+    pub fn new(redirect_browser_to: String) -> ContinueWithRedirectBrowserTo {
         ContinueWithRedirectBrowserTo {
-            action,
             redirect_browser_to,
         }
     }

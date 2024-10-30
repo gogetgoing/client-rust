@@ -17,9 +17,6 @@ pub struct UpdateRegistrationFlowWithProfileMethod {
     /// The Anti-CSRF Token  This token is only required when performing browser flows.
     #[serde(rename = "csrf_token", skip_serializing_if = "Option::is_none")]
     pub csrf_token: Option<String>,
-    /// Method  Should be set to profile when trying to update a profile.
-    #[serde(rename = "method")]
-    pub method: String,
     /// Screen requests navigation to a previous screen.  This must be set to credential-selection to go back to the credential selection screen. credential-selection RegistrationScreenCredentialSelection nolint:gosec // not a credential previous RegistrationScreenPrevious
     #[serde(rename = "screen", skip_serializing_if = "Option::is_none")]
     pub screen: Option<ScreenEnum>,
@@ -33,10 +30,9 @@ pub struct UpdateRegistrationFlowWithProfileMethod {
 
 impl UpdateRegistrationFlowWithProfileMethod {
     /// Update Registration Flow with Profile Method
-    pub fn new(method: String, traits: serde_json::Value) -> UpdateRegistrationFlowWithProfileMethod {
+    pub fn new(traits: serde_json::Value) -> UpdateRegistrationFlowWithProfileMethod {
         UpdateRegistrationFlowWithProfileMethod {
             csrf_token: None,
-            method,
             screen: None,
             traits,
             transient_payload: None,

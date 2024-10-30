@@ -20,18 +20,14 @@ pub struct UpdateLoginFlowWithLookupSecretMethod {
     /// The lookup secret.
     #[serde(rename = "lookup_secret")]
     pub lookup_secret: String,
-    /// Method should be set to \"lookup_secret\" when logging in using the lookup_secret strategy.
-    #[serde(rename = "method")]
-    pub method: String,
 }
 
 impl UpdateLoginFlowWithLookupSecretMethod {
     /// Update Login Flow with Lookup Secret Method
-    pub fn new(lookup_secret: String, method: String) -> UpdateLoginFlowWithLookupSecretMethod {
+    pub fn new(lookup_secret: String) -> UpdateLoginFlowWithLookupSecretMethod {
         UpdateLoginFlowWithLookupSecretMethod {
             csrf_token: None,
             lookup_secret,
-            method,
         }
     }
 }

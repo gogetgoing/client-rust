@@ -20,9 +20,6 @@ pub struct UpdateVerificationFlowWithLinkMethod {
     /// Email to Verify  Needs to be set when initiating the flow. If the email is a registered verification email, a verification link will be sent. If the email is not known, a email with details on what happened will be sent instead.  format: email
     #[serde(rename = "email")]
     pub email: String,
-    /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code` link VerificationStrategyLink code VerificationStrategyCode
-    #[serde(rename = "method")]
-    pub method: MethodEnum,
     /// Transient data to pass along to any webhooks
     #[serde(rename = "transient_payload", skip_serializing_if = "Option::is_none")]
     pub transient_payload: Option<serde_json::Value>,
@@ -30,11 +27,10 @@ pub struct UpdateVerificationFlowWithLinkMethod {
 
 impl UpdateVerificationFlowWithLinkMethod {
     /// Update Verification Flow with Link Method
-    pub fn new(email: String, method: MethodEnum) -> UpdateVerificationFlowWithLinkMethod {
+    pub fn new(email: String) -> UpdateVerificationFlowWithLinkMethod {
         UpdateVerificationFlowWithLinkMethod {
             csrf_token: None,
             email,
-            method,
             transient_payload: None,
         }
     }

@@ -20,9 +20,6 @@ pub struct UpdateLoginFlowWithPasswordMethod {
     /// Identifier is the email or username of the user trying to log in.
     #[serde(rename = "identifier")]
     pub identifier: String,
-    /// Method should be set to \"password\" when logging in using the identifier and password strategy.
-    #[serde(rename = "method")]
-    pub method: String,
     /// The user's password.
     #[serde(rename = "password")]
     pub password: String,
@@ -36,11 +33,10 @@ pub struct UpdateLoginFlowWithPasswordMethod {
 
 impl UpdateLoginFlowWithPasswordMethod {
     /// Update Login Flow with Password Method
-    pub fn new(identifier: String, method: String, password: String) -> UpdateLoginFlowWithPasswordMethod {
+    pub fn new(identifier: String, password: String) -> UpdateLoginFlowWithPasswordMethod {
         UpdateLoginFlowWithPasswordMethod {
             csrf_token: None,
             identifier,
-            method,
             password,
             password_identifier: None,
             transient_payload: None,

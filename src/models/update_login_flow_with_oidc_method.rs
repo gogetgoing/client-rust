@@ -23,9 +23,6 @@ pub struct UpdateLoginFlowWithOidcMethod {
     /// IDTokenNonce is the nonce, used when generating the IDToken. If the provider supports nonce validation, the nonce will be validated against this value and required.
     #[serde(rename = "id_token_nonce", skip_serializing_if = "Option::is_none")]
     pub id_token_nonce: Option<String>,
-    /// Method to use  This field must be set to `oidc` when using the oidc method.
-    #[serde(rename = "method")]
-    pub method: String,
     /// The provider to register with
     #[serde(rename = "provider")]
     pub provider: String,
@@ -42,12 +39,11 @@ pub struct UpdateLoginFlowWithOidcMethod {
 
 impl UpdateLoginFlowWithOidcMethod {
     /// Update Login Flow with OpenID Connect Method
-    pub fn new(method: String, provider: String) -> UpdateLoginFlowWithOidcMethod {
+    pub fn new(provider: String) -> UpdateLoginFlowWithOidcMethod {
         UpdateLoginFlowWithOidcMethod {
             csrf_token: None,
             id_token: None,
             id_token_nonce: None,
-            method,
             provider,
             traits: None,
             transient_payload: None,

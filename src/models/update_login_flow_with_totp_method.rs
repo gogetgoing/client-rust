@@ -17,9 +17,6 @@ pub struct UpdateLoginFlowWithTotpMethod {
     /// Sending the anti-csrf token is only required for browser login flows.
     #[serde(rename = "csrf_token", skip_serializing_if = "Option::is_none")]
     pub csrf_token: Option<String>,
-    /// Method should be set to \"totp\" when logging in using the TOTP strategy.
-    #[serde(rename = "method")]
-    pub method: String,
     /// The TOTP code.
     #[serde(rename = "totp_code")]
     pub totp_code: String,
@@ -30,10 +27,9 @@ pub struct UpdateLoginFlowWithTotpMethod {
 
 impl UpdateLoginFlowWithTotpMethod {
     /// Update Login Flow with TOTP Method
-    pub fn new(method: String, totp_code: String) -> UpdateLoginFlowWithTotpMethod {
+    pub fn new(totp_code: String) -> UpdateLoginFlowWithTotpMethod {
         UpdateLoginFlowWithTotpMethod {
             csrf_token: None,
-            method,
             totp_code,
             transient_payload: None,
         }

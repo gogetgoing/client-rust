@@ -26,9 +26,6 @@ pub struct UpdateLoginFlowWithCodeMethod {
     /// Identifier is the code identifier The identifier requires that the user has already completed the registration or settings with code flow.
     #[serde(rename = "identifier", skip_serializing_if = "Option::is_none")]
     pub identifier: Option<String>,
-    /// Method should be set to \"code\" when logging in using the code strategy.
-    #[serde(rename = "method")]
-    pub method: String,
     /// Resend is set when the user wants to resend the code
     #[serde(rename = "resend", skip_serializing_if = "Option::is_none")]
     pub resend: Option<String>,
@@ -39,13 +36,12 @@ pub struct UpdateLoginFlowWithCodeMethod {
 
 impl UpdateLoginFlowWithCodeMethod {
     /// Update Login flow using the code method
-    pub fn new(csrf_token: String, method: String) -> UpdateLoginFlowWithCodeMethod {
+    pub fn new(csrf_token: String) -> UpdateLoginFlowWithCodeMethod {
         UpdateLoginFlowWithCodeMethod {
             address: None,
             code: None,
             csrf_token,
             identifier: None,
-            method,
             resend: None,
             transient_payload: None,
         }

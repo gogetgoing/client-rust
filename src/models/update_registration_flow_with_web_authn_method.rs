@@ -17,9 +17,6 @@ pub struct UpdateRegistrationFlowWithWebAuthnMethod {
     /// CSRFToken is the anti-CSRF token
     #[serde(rename = "csrf_token", skip_serializing_if = "Option::is_none")]
     pub csrf_token: Option<String>,
-    /// Method  Should be set to \"webauthn\" when trying to add, update, or remove a webAuthn pairing.
-    #[serde(rename = "method")]
-    pub method: String,
     /// The identity's traits
     #[serde(rename = "traits")]
     pub traits: serde_json::Value,
@@ -36,10 +33,9 @@ pub struct UpdateRegistrationFlowWithWebAuthnMethod {
 
 impl UpdateRegistrationFlowWithWebAuthnMethod {
     /// Update Registration Flow with WebAuthn Method
-    pub fn new(method: String, traits: serde_json::Value) -> UpdateRegistrationFlowWithWebAuthnMethod {
+    pub fn new(traits: serde_json::Value) -> UpdateRegistrationFlowWithWebAuthnMethod {
         UpdateRegistrationFlowWithWebAuthnMethod {
             csrf_token: None,
-            method,
             traits,
             transient_payload: None,
             webauthn_register: None,

@@ -14,18 +14,14 @@ use serde::{Deserialize, Serialize};
 /// ContinueWithSettingsUi : Indicates, that the UI flow could be continued by showing a settings ui
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ContinueWithSettingsUi {
-    /// Action will always be `show_settings_ui` show_settings_ui ContinueWithActionShowSettingsUIString
-    #[serde(rename = "action")]
-    pub action: ActionEnum,
     #[serde(rename = "flow")]
     pub flow: Box<models::ContinueWithSettingsUiFlow>,
 }
 
 impl ContinueWithSettingsUi {
     /// Indicates, that the UI flow could be continued by showing a settings ui
-    pub fn new(action: ActionEnum, flow: models::ContinueWithSettingsUiFlow) -> ContinueWithSettingsUi {
+    pub fn new(flow: models::ContinueWithSettingsUiFlow) -> ContinueWithSettingsUi {
         ContinueWithSettingsUi {
-            action,
             flow: Box::new(flow),
         }
     }

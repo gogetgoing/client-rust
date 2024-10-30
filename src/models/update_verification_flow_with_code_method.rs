@@ -22,21 +22,17 @@ pub struct UpdateVerificationFlowWithCodeMethod {
     /// The email address to verify  If the email belongs to a valid account, a verifiation email will be sent.  If you want to notify the email address if the account does not exist, see the [notify_unknown_recipients flag](https://www.ory.sh/docs/kratos/self-service/flows/verify-email-account-activation#attempted-verification-notifications)  If a code was already sent, including this field in the payload will invalidate the sent code and re-send a new code.  format: email
     #[serde(rename = "email", skip_serializing_if = "Option::is_none")]
     pub email: Option<String>,
-    /// Method is the method that should be used for this verification flow  Allowed values are `link` and `code`. link VerificationStrategyLink code VerificationStrategyCode
-    #[serde(rename = "method")]
-    pub method: MethodEnum,
     /// Transient data to pass along to any webhooks
     #[serde(rename = "transient_payload", skip_serializing_if = "Option::is_none")]
     pub transient_payload: Option<serde_json::Value>,
 }
 
 impl UpdateVerificationFlowWithCodeMethod {
-    pub fn new(method: MethodEnum) -> UpdateVerificationFlowWithCodeMethod {
+    pub fn new() -> UpdateVerificationFlowWithCodeMethod {
         UpdateVerificationFlowWithCodeMethod {
             code: None,
             csrf_token: None,
             email: None,
-            method,
             transient_payload: None,
         }
     }

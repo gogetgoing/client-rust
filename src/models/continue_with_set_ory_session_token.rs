@@ -14,9 +14,6 @@ use serde::{Deserialize, Serialize};
 /// ContinueWithSetOrySessionToken : Indicates that a session was issued, and the application should use this token for authenticated requests
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ContinueWithSetOrySessionToken {
-    /// Action will always be `set_ory_session_token` set_ory_session_token ContinueWithActionSetOrySessionTokenString
-    #[serde(rename = "action")]
-    pub action: ActionEnum,
     /// Token is the token of the session
     #[serde(rename = "ory_session_token")]
     pub ory_session_token: String,
@@ -24,9 +21,8 @@ pub struct ContinueWithSetOrySessionToken {
 
 impl ContinueWithSetOrySessionToken {
     /// Indicates that a session was issued, and the application should use this token for authenticated requests
-    pub fn new(action: ActionEnum, ory_session_token: String) -> ContinueWithSetOrySessionToken {
+    pub fn new(ory_session_token: String) -> ContinueWithSetOrySessionToken {
         ContinueWithSetOrySessionToken {
-            action,
             ory_session_token,
         }
     }
